@@ -1,0 +1,23 @@
+{
+  "name": "keystone-demo",
+  "version": "1.0.3",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JedWatson/keystone-demo.git"
+  },
+  "dependencies": {
+    "async": "^2.6.1",
+    "csv": "^3.1.0",
+    "keystone": "^4.0.0",
+    "lodash": "^4.17.10",
+    "pug": "^2.0.3",
+    "restful-keystone": "^0.3.0"
+  },
+  "scripts": {
+    "start": "nodemon keystone.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
