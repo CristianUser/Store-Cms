@@ -3,9 +3,9 @@ var Types = keystone.Field.Types;
 
 var Enquiry = new keystone.List('Enquiry', {
 	nocreate: true,
-	label:'Consultas',
-	plural:'Consultas',
-	singular: 'Consulta'
+	label: 'Consultas',
+	plural: 'Consultas',
+	singular: 'Consulta',
 });
 
 Enquiry.add({

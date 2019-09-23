@@ -1,23 +1,26 @@
 {
-  "name": "keystone-demo",
-  "version": "1.0.3",
+  "name": "qual-party",
+  "version": "0.0.0",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/JedWatson/keystone-demo.git"
-  },
   "dependencies": {
-    "async": "^2.6.1",
-    "csv": "^3.1.0",
-    "keystone": "^4.0.0",
-    "lodash": "^4.17.10",
-    "pug": "^2.0.3",
-    "restful-keystone": "^0.3.0"
-  },
-  "scripts": {
-    "start": "nodemon keystone.js"
+    "keystone": "4.0.0-beta.5",
+    "lodash": "^4.13.1",
+    "moment": "2.17.1",
+    "cloudinary": "1.7.0",
+    "express-handlebars": "3.0.0",
+    "handlebars": "4.0.6",
+    "dotenv": "4.0.0",
+    "keystone-email": "1.0.5",
+    "async": "2.1.4"
   },
   "devDependencies": {
+    "eslint": "3.15.0",
+    "eslint-config-keystone": "3.0.0",
+    "eslint-plugin-react": "^5.1.1",
     "nodemon": "^1.19.2"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "start": "nodemon keystone.js"
   }
 }
