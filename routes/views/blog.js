@@ -5,7 +5,7 @@ exports = module.exports = function (req, res) {
 
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
-
+	// console.log(view.req.query.search)
 	// Init locals
 	locals.section = 'blog';
 	locals.filters = {
@@ -63,6 +63,8 @@ exports = module.exports = function (req, res) {
 			maxPages: 10,
 			filters: {
 				state: 'published',
+				// $text: { $search: view.req.query.search }
+				key: { $regex: `${view.req.query.search | ''}` },
 			},
 		})
 			.sort('-publishedDate')
