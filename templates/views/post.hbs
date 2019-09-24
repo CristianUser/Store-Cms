@@ -1,11 +1,11 @@
-<div class="container">
+{{!-- <div class="container">
 	<div class="row">
 		<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 			<article>
 				<p><a href="/blog">&larr; back to the blog</a></p>
 				<hr>
 				<header>
-					<h1>{{data.post.title}}</h1>
+					<h1>{{post.name}}</h1>
 					<h5>
 						{{{categoryList data.post.categories prefix="Posted in "}}}
 						{{#if author.name.first}}by {{author.name.first}}{{/if}}
@@ -18,4 +18,58 @@
 			</article>
 		</div>
 	</div>
-</div>
+</div> --}}
+
+<div class="container">
+    	<div class="row">
+           <div class="col-xs-4 item-photo">
+				{{#if post.image}}<img style="max-width:100%;"src="{{{cloudinaryUrl post.image crop='fit' }}}" class="img-responsive">{{/if}}
+
+                {{!-- <img style="max-width:100%;" src="https://ak1.ostkcdn.com/images/products/8818677/Samsung-Galaxy-S4-I337-16GB-AT-T-Unlocked-GSM-Android-Cell-Phone-85e3430e-6981-4252-a984-245862302c78_600.jpg" /> --}}
+            </div>
+            <div class="col-xs-5" style="border:0px solid gray">
+                <!-- Datos del vendedor y titulo del producto -->
+                <h3>{{post.name}}</h3>    
+                <h5 style="color:#337ab7">publicado por <a href="#">{{post.author.name.first}}</a> · <small style="color:#337ab7">(5054 ventas)</small></h5>
+    
+                <!-- Precios -->
+                <h6 class="title-price"><small>PRECIO</small></h6>
+                <h3 style="margin-top:0px;">RD$ {{post.price}}</h3>
+    
+                <!-- Detalles especificos del producto -->
+
+                <div class="section" style="padding-bottom:20px;">
+                    <h6 class="title-attr"><small>CANTIDAD</small></h6>                    
+                    <div>
+                        <div class="btn-minus"><span class="glyphicon glyphicon-minus"></span></div>
+                        <input value="1" />
+                        <div class="btn-plus"><span class="glyphicon glyphicon-plus"></span></div>
+                    </div>
+                </div>
+                <div class="section" style="padding-bottom:5px;">
+                    <h6 class="title-attr"><small>Total</small></h6>                    
+                    <div>
+                        <div class="attr2">1100</div>
+                    </div>
+                </div>                   
+    
+                <!-- Botones de compra -->
+                <div class="section" style="padding-bottom:20px;">
+                    <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Contactar</button>
+                    {{!-- <h6><a href="#"><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> Agregar a lista de deseos</a></h6> --}}
+                </div>                                        
+            </div>                              
+    
+            <div class="col-xs-9">
+                <ul class="menu-items">
+                    <li class="active">Detalle del producto</li>
+                    {{!-- <li>Garantía</li>
+                    <li>Vendedor</li>
+                    <li>Envío</li> --}}
+                </ul>
+                <div style="width:100%;border-top:1px solid silver">
+					{{{post.description}}}
+                </div>
+            </div>		
+        </div>
+    </div>

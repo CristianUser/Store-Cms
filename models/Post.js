@@ -10,13 +10,13 @@ var Post = new keystone.List('Post', {
 
 Post.add({
 	name: { label: 'Titulo', type: String, required: true },
-	state: { label: 'Estado',  type: Types.Select, options: [
-		{ label: 'Borrador', value: 'draft'},
-		{ label: 'Publico', value: 'published'},
-		{ label: 'Archivado', value: 'archived'}
+	state: { label: 'Estado', type: Types.Select, options: [
+		{ label: 'Borrador', value: 'draft' },
+		{ label: 'Publico', value: 'published' },
+		{ label: 'Archivado', value: 'archived' }
 	], default: 'draft', index: true },
 	author: { label: 'Autor', type: Types.Relationship, ref: 'User', index: true },
-	publishedDate: { label: 'Fecha de Publicacion', type: Types.Date, index: true, noedit: true },
+	publishedDate: { label: 'Fecha de Publicacion', type: Types.Date, index: true, noedit: true, default: new Date() },
 	price: { label: 'Precio', type: Types.Money },
 	image: { label: 'Imagen principal', type: Types.CloudinaryImage },
 	images: { label: 'Imagenes del producto', type: Types.CloudinaryImages },
