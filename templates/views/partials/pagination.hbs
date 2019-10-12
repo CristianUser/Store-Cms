@@ -1,11 +1,11 @@
 <ul class="pagination">
-	<li {{#unless data.posts.previous}}class="disabled"{{/unless}}>
+	<li class="page-item{{#unless data.posts.previous}} disabled{{/unless}}">
 		<a href="{{paginationPreviousUrl data.posts.previous}}">
 			<span class="glyphicon glyphicon-chevron-left"></span>
 		</a>
 	</li>
 	{{{paginationNavigation data.posts.pages data.posts.currentPage data.posts.totalPages}}}
-	<li {{#unless data.posts.next}}class="disabled"{{/unless}}>
+	<li class="page-item{{#unless data.posts.next}} disabled{{/unless}}">
 		<a href="{{paginationNextUrl data.posts.next data.posts.totalPages}}">
 			<span class="glyphicon glyphicon-chevron-right"></span>
 		</a>

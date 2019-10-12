@@ -5,7 +5,7 @@ var keystone = require('keystone');
 var cloudinary = require('cloudinary');
 
 // Collection of templates to interpolate
-var linkTemplate = _.template('<a href="<%= url %>"><%= text %></a>');
+var linkTemplate = _.template('<a class="page-link" href="<%= url %>"><%= text %></a>');
 var scriptTemplate = _.template('<script src="<%= src %>"></script>');
 var cssLinkTemplate = _.template('<link href="<%= href %>" rel="stylesheet">');
 
@@ -238,7 +238,7 @@ module.exports = function () {
 			// create boolean flag state if currentPage
 			var isActivePage = ((page === currentPage) ? true : false);
 			// need an active class indicator
-			var liClass = ((isActivePage) ? ' class="active"' : '');
+			var liClass = ((isActivePage) ? ' class="page-item active"' : 'class="page-item"');
 
 			// if '...' is sent from keystone then we need to override the url
 			if (page === '...') {

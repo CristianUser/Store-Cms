@@ -22,15 +22,15 @@
 
 <div class="container">
     	<div class="row">
-           <div class="col-xs-4 item-photo">
+           <div class="col-4 item-photo">
 				{{#if post.image}}<img style="max-width:100%;"src="{{{cloudinaryUrl post.image crop='fit' }}}" class="img-responsive">{{/if}}
 
                 {{!-- <img style="max-width:100%;" src="https://ak1.ostkcdn.com/images/products/8818677/Samsung-Galaxy-S4-I337-16GB-AT-T-Unlocked-GSM-Android-Cell-Phone-85e3430e-6981-4252-a984-245862302c78_600.jpg" /> --}}
             </div>
-            <div class="col-xs-5" style="border:0px solid gray">
+            <div class="col-5" style="border:0px solid gray">
                 <!-- Datos del vendedor y titulo del producto -->
                 <h3>{{post.name}}</h3>    
-                <h5 style="color:#337ab7">Publicado por {{post.author.name.first}}</h5>
+                <h6 style="color:#337ab7">Publicado por {{post.author.name.first}}</h6>
     
                 <!-- Precios -->
                 <h6 class="title-price"><small>PRECIO</small></h6>
@@ -41,9 +41,9 @@
                 <div class="section" style="padding-bottom:20px;">
                     <h6 class="title-attr"><small>CANTIDAD</small></h6>                    
                     <div>
-                        <div class="btn-minus"><span class="glyphicon glyphicon-minus"></span></div>
-                        <input value="1" />
-                        <div class="btn-plus"><span class="glyphicon glyphicon-plus"></span></div>
+                        <div class="btn-minus"><i class="fas fa-minus"></i></div>
+                        <input value="1" style="border: solid 1px #838383;">
+                        <div class="btn-plus"><i class="fas fa-plus"></i></div>
                     </div>
                 </div>
                 <div class="section" style="padding-bottom:5px;">
@@ -60,7 +60,7 @@
                 </div>                                        
             </div>                              
     
-            <div class="col-xs-9">
+            <div class="col-9">
                 <ul class="menu-items">
                     <li class="active">Detalle del producto</li>
                     {{!-- <li>Garantía</li>

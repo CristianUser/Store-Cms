@@ -64,7 +64,7 @@ exports = module.exports = function (req, res) {
 			filters: {
 				state: 'published',
 				// $text: { $search: view.req.query.search }
-				key: { $regex: `${view.req.query.search | ''}` },
+				// key: { $regex: `${view.req.query.search | ''}` },
 			},
 		})
 			.sort('-publishedDate')
