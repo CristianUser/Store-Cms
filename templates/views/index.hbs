@@ -3,20 +3,20 @@
   <!-- Page Content -->
           <div id="carouselExampleIndicators" class="carousel slide mb-4" data-ride="carousel">
           <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            {{#each data.album}}
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{@index}}"></li>
+            {{/each}}
           </ol>
           <div class="carousel-inner" role="listbox">
+            {{#each data.album}}
+            {{#if @first}}
             <div class="carousel-item active">
-              <img class="d-block img-fluid" src="https://image.dhgate.com/0x0/f2/albu/g10/M00/3B/8B/rBVaVlx4xBOAdHb7AAHRKoWspuM632.jpg" alt="First slide">
-            </div>
+            {{else}}
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="https://c.76.my/Malaysia/10-inch-colour-ballon-wedding-party-birthday-ballon-30pcs-1pack-sherrahouse-1606-07-SherraHouse@16.jpg" alt="Second slide">
+            {{/if}}
+              <img class="d-block img-fluid" src="{{ secure_url }}" alt="Second slide">
             </div>
-            <div class="carousel-item">
-              <img class="d-block img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Balloon_arch.jpg/1200px-Balloon_arch.jpg" alt="Third slide">
-            </div>
+            {{/each}}
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

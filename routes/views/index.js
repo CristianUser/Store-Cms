@@ -6,6 +6,7 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 	locals.data = {
 		posts: [],
+		album: [],
 	};
 
 	view.on('init', function (next) {
@@ -19,6 +20,16 @@ exports = module.exports = function (req, res) {
 
 		q.exec(function (err, results) {
 			locals.data.posts = results;
+			next(err);
+		});
+	});
+
+	view.on('init', function (next) {
+
+		var q = keystone.list('Gallery').model.find().limit(1);
+
+		q.exec(function (err, results) {
+			locals.data.album = results[0].images;
 			next(err);
 		});
 	});
