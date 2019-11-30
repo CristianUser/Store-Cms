@@ -45,9 +45,9 @@ exports = module.exports = function (app) {
 	app.all('/contact', routes.views.contact);
 	app.all('/signup', routes.views.signup);
 	app.all('/signin', routes.views.signin);
-	app.get('/keystone/signout', (req, res, next) => {
+	app.get('/signout', (req, res, next) => {
 		res.clearCookie('ecommerce-auth');
-		next();
+		return res.redirect('/keystone/signout');
 	});
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
