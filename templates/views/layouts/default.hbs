@@ -40,7 +40,11 @@
 					</form>
 					<div class="collaspse navbar-collapsed">
 						<ul style="flex-direction: unset;" class="nav navbar-nav navbar-right">
+							{{#if user}}
+							<li class=""><a href="#">{{ userName user}}</a></li>
+							{{else}}
 							<li class=""><a href="/signup">Sign Up</a></li>
+							{{/if}}
 							{{#if user}}
 							<li class=""><a href="/keystone/signout">Sign Out</a></li>
 							{{else}}

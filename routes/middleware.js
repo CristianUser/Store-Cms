@@ -26,6 +26,7 @@ exports.initLocals = function (req, res, next) {
 		{ label: 'Contact', key: 'contact', href: '/contact' }
 	];
 	res.locals.user = req.user;
+
 	next();
 };
 
@@ -61,6 +62,18 @@ exports.requireCustomer = function (req, res, next) {
 	} catch (ex) {
 		// if invalid token
 		res.status(400).send('Invalid token.');
+	}
+};
+
+exports.setCustomer = function (req, res, next) {
+	const token = req.cookies['ecommerce-auth'];
+	try {
+		const decoded = jwt.verify(token, config.get('secret'));
+		req.customer = decoded;
+		res.locals.user = res.locals.user || decoded;
+		next();
+	} catch (ex) {
+		next();
 	}
 };
 

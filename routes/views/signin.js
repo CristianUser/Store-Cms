@@ -20,13 +20,12 @@ exports = module.exports = function (req, res) {
 			if (user) {
 				res.cookie('ecommerce-auth', user.generateAuthToken(), {
 					httpOnly: true,
+					maxAge: 45 * 60000,
 				});
-				console.log();
 			} else {
 				locals.validationErrors.email = 'User not found';
 			}
 			res.redirect('/');
-			console.log(user);
 		});
 	});
 

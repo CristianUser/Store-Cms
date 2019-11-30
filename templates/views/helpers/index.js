@@ -326,5 +326,9 @@ module.exports = function () {
 		return obj._[underscoreMethod].format();
 	};
 
+	_helpers.userName = function ({ name }) {
+		return `${name.first} ${name.last}`;
+	};
+
 	return _helpers;
 };
