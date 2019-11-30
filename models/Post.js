@@ -13,7 +13,7 @@ Post.add({
 	state: { label: 'Estado', type: Types.Select, options: [
 		{ label: 'Borrador', value: 'draft' },
 		{ label: 'Publico', value: 'published' },
-		{ label: 'Archivado', value: 'archived' }
+		{ label: 'Archivado', value: 'archived' },
 	], default: 'draft', index: true },
 	author: { label: 'Autor', type: Types.Relationship, ref: 'User', index: true },
 	publishedDate: { label: 'Fecha de Publicacion', type: Types.Date, index: true, noedit: true, default: new Date() },
@@ -29,6 +29,7 @@ Post.schema.virtual('content.full').get(function () {
 });
 
 Post.relationship({ path: 'comments', ref: 'PostComment', refPath: 'post' });
+Post.relationship({ ref: 'Order', refPath: 'products' });
 
 Post.track = true;
 Post.defaultColumns = 'name, state|20%, price|20%,  author|20%, publishedDate|20%';

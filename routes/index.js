@@ -21,6 +21,7 @@
 var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
+const cookieParser = require('cookie-parser');
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
@@ -34,9 +35,11 @@ var routes = {
 // Setup Route Bindings
 exports = module.exports = function (app) {
 	// Views
+	app.use(cookieParser());
 	app.get('/', routes.views.index);
 	app.get('/blog/:category?', routes.views.blog);
 	app.get('/blog/post/:post', routes.views.post);
+	app.post('/blog/post/:post', middleware.requireCustomer, routes.views.post);
 	app.get('/gallery', routes.views.gallery);
 	app.all('/contact', routes.views.contact);
 	app.all('/signup', routes.views.signup);

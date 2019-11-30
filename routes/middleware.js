@@ -7,8 +7,9 @@
  * you have more middleware you may want to group it as separate
  * modules in your project's /lib directory.
  */
-var _ = require('lodash');
-
+const _ = require('lodash');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
 /**
 	Initialises the standard view locals
@@ -22,12 +23,11 @@ exports.initLocals = function (req, res, next) {
 		{ label: 'Inicio', key: 'home', href: '/' },
 		{ label: 'Productos', key: 'blog', href: '/blog' },
 		{ label: 'Gallery', key: 'gallery', href: '/gallery' },
-		{ label: 'Contact', key: 'contact', href: '/contact' },
+		{ label: 'Contact', key: 'contact', href: '/contact' }
 	];
 	res.locals.user = req.user;
 	next();
 };
-
 
 /**
 	Fetches and clears the flashMessages before a view is rendered
@@ -39,10 +39,30 @@ exports.flashMessages = function (req, res, next) {
 		warning: req.flash('warning'),
 		error: req.flash('error'),
 	};
-	res.locals.messages = _.some(flashMessages, function (msgs) { return msgs.length; }) ? flashMessages : false;
+	res.locals.messages = _.some(flashMessages, function (msgs) {
+		return msgs.length;
+	})
+		? flashMessages
+		: false;
 	next();
 };
 
+exports.requireCustomer = function (req, res, next) {
+	// get the token from the header if present
+	const token = req.cookies['ecommerce-auth'];
+	// if no token found, return response (without going to the next middelware)
+	if (!token) return res.status(401).send('Access denied. No token provided.');
+
+	try {
+		// if can verify the token, set req.user and pass to next middleware
+		const decoded = jwt.verify(token, config.get('secret'));
+		req.customer = decoded;
+		next();
+	} catch (ex) {
+		// if invalid token
+		res.status(400).send('Invalid token.');
+	}
+};
 
 /**
 	Prevents people from accessing protected pages when they're not signed in

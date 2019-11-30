@@ -1,6 +1,7 @@
 var keystone = require('keystone');
 var Post = keystone.list('Post');
 var PostComment = keystone.list('PostComment');
+const Order = keystone.list('Order');
 
 exports = module.exports = function (req, res) {
 
@@ -12,6 +13,8 @@ exports = module.exports = function (req, res) {
 	locals.filters = {
 		post: req.params.post,
 	};
+	locals.formData = req.body || {};
+
 
 	// Load the current post
 	view.on('init', function (next) {
@@ -78,6 +81,35 @@ exports = module.exports = function (req, res) {
 			} else {
 				req.flash('success', 'Your comment was added.');
 				return res.redirect('/blog/post/' + locals.post.key + '#comment-id-' + newComment.id);
+			}
+			next();
+		});
+
+	});
+
+	view.on('post', { action: 'make-order' }, function (next) {
+
+		var newOrder = new Order.model();
+
+		var updater = newOrder.getUpdateHandler(req);
+		console.log({
+			customer: req.customer._id,
+			products: [locals.formData.productId],
+			message: '',
+		});
+		updater.process({
+			customer: req.customer._id,
+			products: [locals.formData.productId],
+			message: '',
+		}, {
+			fields: 'customer, products, message',
+			flashErrors: true,
+			logErrors: true,
+		}, function (err) {
+			if (err) {
+				validationErrors = err.errors;
+			} else {
+				req.flash('success', 'Your order was submitted.');
 			}
 			next();
 		});

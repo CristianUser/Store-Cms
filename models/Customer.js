@@ -1,5 +1,7 @@
-var keystone = require('keystone');
-var Types = keystone.Field.Types;
+const keystone = require('keystone');
+const Types = keystone.Field.Types;
+const config = require('config');
+const jwt = require('jsonwebtoken');
 
 var Customer = new keystone.List('Customer', {
 	label: 'Clientes',
@@ -17,6 +19,9 @@ Customer.add({
 	password: { type: Types.Password, initial: true, required: false },
 });
 
+Customer.relationship({ ref: 'Order', refPath: 'customer' });
+
+
 /**
  * DEMO USER PROTECTION
  * The following code prevents anyone updating the default admin user
@@ -32,6 +37,11 @@ Customer.schema.path('password').set(function (newValue) {
 	this.__password_needs_hashing = true;
 	return newValue;
 });
+
+Customer.schema.methods.generateAuthToken = function () {
+	const token = jwt.sign({ _id: this._id, email: this.email, name: this.name }, config.get('secret'));
+	return token;
+};
 
 /**
  * END DEMO USER PROTECTION

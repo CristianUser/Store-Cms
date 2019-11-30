@@ -3,38 +3,43 @@
     	<div class="row">
             <div id="my-gallery" class="col-sm-12 col-md-6">
             </div>
-            <div class="col-sm-12 col-md-6" style="border:0px solid gray">
-                <!-- Datos del vendedor y titulo del producto -->
-                <h3>{{post.name}}</h3>    
-                <h6 style="color:#337ab7">Publicado por {{post.author.name.first}}</h6>
-    
-                <!-- Precios -->
-                <h6 class="title-price"><small>PRECIO</small></h6>
-                <h3 style="margin-top:0px;">RD$ {{post.price}}</h3>
-    
-                <!-- Detalles especificos del producto -->
+                <div class="col-sm-12 col-md-6" style="border:0px solid gray">
+                    <!-- Datos del vendedor y titulo del producto -->
+                    <h3>{{post.name}}</h3>    
+                    <h6 style="color:#337ab7">Publicado por {{post.author.name.first}}</h6>
+        
+                    <!-- Precios -->
+                    <h6 class="title-price"><small>PRECIO</small></h6>
+                    <h3 style="margin-top:0px;">RD$ {{post.price}}</h3>
+        
+                    <!-- Detalles especificos del producto -->
 
-                <div class="section" style="padding-bottom:20px;">
-                    <h6 class="title-attr"><small>CANTIDAD</small></h6>                    
-                    <div>
-                        <div class="btn-minus"><i class="fas fa-minus"></i></div>
-                        <input value="1" style="border: solid 1px #838383;">
-                        <div class="btn-plus"><i class="fas fa-plus"></i></div>
+                    <div class="section" style="padding-bottom:20px;">
+                        <h6 class="title-attr"><small>CANTIDAD</small></h6>                    
+                        <div>
+                            <div class="btn-minus"><i class="fas fa-minus"></i></div>
+                            <input name="quantity" value="1" style="border: solid 1px #838383;">
+                            <div class="btn-plus"><i class="fas fa-plus"></i></div>
+                        </div>
                     </div>
-                </div>
-                <div class="section" style="padding-bottom:5px;">
-                    <h6 class="title-attr"><small>Total</small></h6>                    
-                    <div>
-                        <div class="attr2">{{post.price}}</div>
-                    </div>
-                </div>                   
-    
-                <!-- Botones de compra -->
-                <div class="section" style="padding-bottom:20px;">
-                    <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Contactar</button>
-                    {{!-- <h6><a href="#"><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> Agregar a lista de deseos</a></h6> --}}
-                </div>                                        
-            </div>                              
+                    <div class="section" style="padding-bottom:5px;">
+                        <h6 class="title-attr"><small>Total</small></h6>                    
+                        <div>
+                            <div class="attr2">{{post.price}}</div>
+                        </div>
+                    </div>                   
+        
+                    <!-- Botones de compra -->
+                    <div class="section" style="padding-bottom:20px;">
+            <form action="" method="post">
+
+                        <input type="hidden" name="action" value="make-order">
+                        <input type="hidden" name="productId" value="{{post._id}}">
+                        <button type="submit" class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-earphone" aria-hidden="true"></span>Solicitar</button>
+                        {{!-- <h6><a href="#"><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> Agregar a lista de deseos</a></h6> --}}
+            </form>
+                    </div>                                        
+                </div>                              
     
             <div class="col-9">
                 <ul class="menu-items">

@@ -16,12 +16,17 @@ exports = module.exports = function (req, res) {
 	view.on('post', { action: 'signin' }, function (next) {
 		let q = Customer.model.findOne({ email: req.body.email });
 
-		q.exec((err, res) => {
-			if (res) {
-
+		q.exec((err, user) => {
+			if (user) {
+				res.cookie('ecommerce-auth', user.generateAuthToken(), {
+					httpOnly: true,
+				});
+				console.log();
 			} else {
 				locals.validationErrors.email = 'User not found';
 			}
+			res.redirect('/');
+			console.log(user);
 		});
 	});
 
