@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "async": "2.1.4",
+    "async": "2.6.4",
     "bcrypt": "^3.0.7",
     "cloudinary": "1.7.0",
     "config": "^3.2.4",
